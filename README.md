@@ -22,3 +22,5 @@ also you can click on the status bar to set the time.
   "title": "Set Time"
 }
 ```
+
+## More Infomation
