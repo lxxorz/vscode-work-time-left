@@ -146,7 +146,9 @@
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "package": "pnpm vsce package --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies"
   },
   "publisher": "BjornLi",
   "devDependencies": {
@@ -160,5 +162,11 @@
     "date-fns": "^3.6.0",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lxxorz/work-time-left"
+    },
+
+  "license": "LGPL-3.0"
 }
