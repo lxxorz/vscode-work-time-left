@@ -1,4 +1,4 @@
-import {commands, window,  StatusBarAlignment}  from 'vscode';
+import {commands, window, workspace,  StatusBarAlignment}  from 'vscode';
 import type { ExtensionContext, StatusBarItem } from 'vscode';
 import CommandFn from './commands';
 
@@ -57,6 +57,13 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push({
 		dispose: () => clearInterval(interval)
 	});
+
+	const configChangeDisposable = workspace.onDidChangeConfiguration(event => {
+		if (event.affectsConfiguration('work-time-left.time') || event.affectsConfiguration('work-time-left.textColor')) {
+				showStatusBar();
+		}
+});    context.subscriptions.push(configChangeDisposable);
+
 }
 
 export function deactivate() {

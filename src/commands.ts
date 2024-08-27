@@ -7,6 +7,7 @@ export default {
     });
 
     if (time) {
+      vscode.workspace.getConfiguration().update('work-time-left.time', time, true);
       vscode.window.showInformationMessage(`Time has been set to: ${time}`);
     } else {
       vscode.window.showWarningMessage('No time entered');
