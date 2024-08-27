@@ -1,9 +1,11 @@
 {
   "name": "work-time-left",
-  "displayName": "work-time-left",
+  "displayName": "Work Time Left",
   "description": "display work time left",
+  "private": true,
   "packageManager": "pnpm@9.6.0",
   "version": "0.0.1",
+  "author": "Bjorn Li <lxxorz@gmail.com>",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -165,7 +167,7 @@
     "typescript": "^5.4.5"
   },
   "repository": {
-    "type": "git",
+    "type": "github",
     "url": "https://github.com/lxxorz/work-time-left"
   },
   "license": "LGPL-3.0"
