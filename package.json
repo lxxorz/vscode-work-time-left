@@ -2,6 +2,7 @@
   "name": "work-time-left",
   "displayName": "work-time-left",
   "description": "",
+  "packageManager": "pnpm@9.6.0",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
@@ -13,6 +14,7 @@
     "*",
     "onStartupFinished"
   ],
+  "icon": "./images/icon.png",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -146,6 +148,7 @@
     "lint": "eslint src --ext ts",
     "test": "vscode-test"
   },
+  "publisher": "BjornLi",
   "devDependencies": {
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",

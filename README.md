@@ -6,13 +6,13 @@ Display the time left in the work day in the status bar.
 
 ## Example
 
-![example](example.png)
+![example](./images/example.png)
 
 ## Extension Settings
 
 also you can click on the status bar to set the time.
 
-![example-status-bar](example-status-bar.png)
+![example-status-bar](./images/example-status-bar.png)
 
 ## Command
 
