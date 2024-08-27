@@ -1,18 +1,20 @@
-# work-time-left README
+# Work Time Left
 
 Display the time left in the work day in the status bar.
 
+- locale support
+
 ## Example
 
-![example-2](example-2.png)
+![example](example.png)
 
 ## Extension Settings
 
-This extension contributes the following settings:
+also you can click on the status bar to set the time.
 
-![example-1](example-1.png)
+![example-status-bar](example-status-bar.png)
 
-Command
+## Command
 
 ```json
 {

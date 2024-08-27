@@ -27,8 +27,7 @@
       "properties": {
         "work-time-left.time": {
           "type": "string",
-          "default": "18:49:00",
-          "description": "End time"
+          "default": "18:49:00"
         },
         "work-time-left.textColor": {
           "type": "string",
@@ -134,8 +133,7 @@
             "zh-HK",
             "zh-TW"
           ],
-          "default": "en-US",
-          "description": "Time Locale"
+          "default": "en-US"
         }
       }
     }
