@@ -16,6 +16,15 @@ export const Config = {
 
   get locale() {
     return getConfig<keyof typeof localeMap >("locale", "en-US")!;
-  }
+  },
+  get enableRemind() {
+    return getConfig("enableRemind", true)!;
+  },
+  get remindTime() {
+    return getConfig("remindTime", 10)!;
+  },
+  get remindText() {
+    return getConfig("remindText", "Attention ✋Time to go home!")!;
+  },
 };
 

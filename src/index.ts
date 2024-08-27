@@ -2,7 +2,7 @@ import { commands, window, workspace, StatusBarAlignment, languages } from 'vsco
 import type { ExtensionContext, StatusBarItem } from 'vscode';
 import CommandFn from './commands';
 
-import { formatDistanceToNowStrict } from 'date-fns';
+import {formatDate, formatDistanceToNowStrict } from 'date-fns';
 import * as locale from 'date-fns/locale';
 import { Config } from './config';
 import localesMap from './locales.json';
@@ -27,11 +27,17 @@ function showStatusBar() {
   if (!statusBar) {
     statusBar = window.createStatusBarItem(StatusBarAlignment.Left, 0);
     statusBar.command = 'work-time-left.setTime';
-    statusBar.tooltip = 'Set Time';
     statusBar.show();
   }
   statusBar.text = distance;
   statusBar.color = Config.textColor;
+  statusBar.tooltip = formatDate(
+    getStrictTime(),
+    'yyyy-MM-dd HH:mm:ss',
+    {
+      locale: locale[localeKey],
+    },
+  );
 }
 
 export function activate(context: ExtensionContext) {

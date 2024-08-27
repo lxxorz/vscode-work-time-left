@@ -137,6 +137,15 @@
             "zh-TW"
           ],
           "default": "en-US"
+        },
+        "work-time-left.remindTime": {
+          "type": "number",
+          "default": 10,
+          "description": "Remind Time (minutes)"
+        },
+        "work-time-left.remindText": {
+          "type": "string",
+          "default": "Attention✋ Time to go home!"
         }
       }
     }
@@ -144,7 +153,6 @@
   "scripts": {
     "vscode:prepublish": "pnpm build",
     "build": "tsup src/index.ts --external vscode",
-    "compile": "tsc -p ./",
     "dev": "pnpm build --watch",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
@@ -170,5 +178,5 @@
     "type": "github",
     "url": "https://github.com/lxxorz/work-time-left"
   },
-  "license": "LGPL-3.0"
+  "license": "AGPL-3.0-only"
 }
