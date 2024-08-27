@@ -1,22 +1,14 @@
-import {commands, window, workspace,  StatusBarAlignment}  from 'vscode';
+import {commands, window, workspace,  StatusBarAlignment, languages}  from 'vscode';
 import type { ExtensionContext, StatusBarItem } from 'vscode';
 import CommandFn from './commands';
 
 import {formatDistanceToNowStrict} from "date-fns";
-import {zhCN, enUS, ja} from "date-fns/locale";
-import { Config, language } from './config';
-import localesMap from "./language.json";
+import * as locale from "date-fns/locale";
+import { Config } from './config';
+import localesMap from "./locales.json";
 
 let statusBar: StatusBarItem;
 let interval: ReturnType<typeof setInterval>;
-const locales = {
-	zhCN,
-	enUS,
-	ja
-};
-
-type LocaleKey = keyof typeof locales;
-
 function getStrictTime() {
 	const endTime = Config.time
 		.split(":")
@@ -29,10 +21,11 @@ function getStrictTime() {
 }
 
 function showStatusBar() {
+	const localeKey = localesMap[Config.locale] as keyof typeof locale;
 	const distance = formatDistanceToNowStrict(
 		getStrictTime(),
 		{
-			locale: locales[localesMap[language as keyof typeof localesMap] as LocaleKey] ?? enUS
+			locale: locale[localeKey],
 		}
 	);
 
