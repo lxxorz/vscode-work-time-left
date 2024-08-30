@@ -138,6 +138,11 @@
           ],
           "default": "en-US"
         },
+        "work-time-left.enableRemind": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Remind"
+        },
         "work-time-left.remindTime": {
           "type": "number",
           "default": 10,
@@ -145,7 +150,7 @@
         },
         "work-time-left.remindText": {
           "type": "string",
-          "default": "Attention✋ Time to go home!"
+          "default": "Time to call it a day! 🌇"
         }
       }
     }

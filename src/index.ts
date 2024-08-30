@@ -2,9 +2,9 @@ import { commands, window, workspace, StatusBarAlignment, languages } from 'vsco
 import type { ExtensionContext, StatusBarItem } from 'vscode';
 import CommandFn from './commands';
 
-import {formatDate, formatDistanceToNowStrict } from 'date-fns';
+import { formatDate, formatDistanceToNowStrict } from 'date-fns';
 import * as locale from 'date-fns/locale';
-import { Config } from './config';
+import { Config, FLAG } from './config';
 import localesMap from './locales.json';
 
 let statusBar: StatusBarItem;
@@ -24,6 +24,13 @@ function showStatusBar() {
     locale: locale[localeKey],
   });
 
+  const distance_minitues = (new Date(getStrictTime()).getTime() - new Date().getTime()) / 1000 / 60;
+
+  if(Config.enableRemind && distance_minitues < Config.remindTime && !FLAG.todayRemind) {
+    window.showInformationMessage(Config.remindText);
+    FLAG.todayRemind = true;
+  }
+
   if (!statusBar) {
     statusBar = window.createStatusBarItem(StatusBarAlignment.Left, 0);
     statusBar.command = 'work-time-left.setTime';
@@ -31,13 +38,9 @@ function showStatusBar() {
   }
   statusBar.text = distance;
   statusBar.color = Config.textColor;
-  statusBar.tooltip = formatDate(
-    getStrictTime(),
-    'yyyy-MM-dd HH:mm:ss',
-    {
-      locale: locale[localeKey],
-    },
-  );
+  statusBar.tooltip = formatDate(getStrictTime(), 'yyyy-MM-dd HH:mm:ss', {
+    locale: locale[localeKey],
+  });
 }
 
 export function activate(context: ExtensionContext) {
@@ -46,7 +49,7 @@ export function activate(context: ExtensionContext) {
 
   showStatusBar();
 
-  interval = setInterval(showStatusBar, 1000 * 30);
+  interval = setInterval(showStatusBar, 1000 );
 
   context.subscriptions.push({
     dispose: () => clearInterval(interval),
