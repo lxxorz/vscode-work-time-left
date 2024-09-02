@@ -18,16 +18,16 @@ function getStrictTime() {
   return date;
 }
 
-function showStatusBar() {
+function updateStatusBar() {
   const localeKey = localesMap[Config.locale] as keyof typeof locale;
   const distance = formatDistanceToNowStrict(getStrictTime(), {
     locale: locale[localeKey],
   });
 
-  const distance_minitues = (new Date(getStrictTime()).getTime() - new Date().getTime()) / 1000 / 60;
+  const distance_seconds = (new Date(getStrictTime()).getTime() - new Date().getTime()) / 1000;
+  const distance_minitues = distance_seconds / 60;
 
-  if(Config.enableRemind && distance_minitues < Config.remindTime && !FLAG.todayRemind) {
-    window.showInformationMessage(Config.remindText);
+  if(Config.enableRemind && distance_minitues < Config.remindTime && !FLAG.todayRemind) {    window.showInformationMessage(Config.remindText);
     FLAG.todayRemind = true;
   }
 
@@ -36,7 +36,7 @@ function showStatusBar() {
     statusBar.command = 'work-time-left.setTime';
     statusBar.show();
   }
-  statusBar.text = distance;
+  statusBar.text = distance_seconds < 1 ? `-${distance}` : distance;
   statusBar.color = Config.textColor;
   statusBar.tooltip = formatDate(getStrictTime(), 'yyyy-MM-dd HH:mm:ss', {
     locale: locale[localeKey],
@@ -47,9 +47,9 @@ export function activate(context: ExtensionContext) {
   const disposable = commands.registerCommand('work-time-left.setTime', CommandFn.setTime);
   context.subscriptions.push(disposable);
 
-  showStatusBar();
+  updateStatusBar();
 
-  interval = setInterval(showStatusBar, 1000 );
+  interval = setInterval(updateStatusBar, 1000 * 10);
 
   context.subscriptions.push({
     dispose: () => clearInterval(interval),
@@ -57,7 +57,7 @@ export function activate(context: ExtensionContext) {
 
   const configChangeDisposable = workspace.onDidChangeConfiguration((event) => {
     if (event.affectsConfiguration('work-time-left.time') || event.affectsConfiguration('work-time-left.textColor') || event.affectsConfiguration('work-time-left.locale')) {
-      showStatusBar();
+      updateStatusBar();
     }
   });
   context.subscriptions.push(configChangeDisposable);

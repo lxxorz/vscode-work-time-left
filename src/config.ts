@@ -23,9 +23,9 @@ export const Config = {
     return getConfig("enableRemind", true)!;
   },
   get remindTime() {
-    return getConfig("remindTime", 10)!;
+    return getConfig("remindTime", 5)!;
   },
   get remindText() {
-    return getConfig("remindText", "Attention ✋Time to go home!")!;
-  },
+    return getConfig("remindText", "Great job today! It's time to call it a day and unwind.🌇")!;
+  }
 };

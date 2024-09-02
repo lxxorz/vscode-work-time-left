@@ -21,7 +21,7 @@
     "commands": [
       {
         "command": "work-time-left.setTime",
-        "title": "Set Time"
+        "title": "update work time"
       }
     ],
     "configuration": {
@@ -35,7 +35,7 @@
         "work-time-left.textColor": {
           "type": "string",
           "default": "#4db051",
-          "description": "Display Text Color"
+          "description": "Display text color"
         },
         "work-time-left.locale": {
           "type": "string",
@@ -140,33 +140,38 @@
         },
         "work-time-left.enableRemind": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable Remind"
+          "default": true
         },
         "work-time-left.remindTime": {
           "type": "number",
-          "default": 10,
-          "description": "Remind Time (minutes)"
+          "default": 5,
+          "description": "When to remind you to call it a day, in minutes"
         },
         "work-time-left.remindText": {
           "type": "string",
-          "default": "Time to call it a day! 🌇"
+          "default": "Great job today! It's time to call it a day and unwind.🌇"
         }
       }
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm build",
     "build": "tsup src/index.ts --external vscode",
-    "dev": "pnpm build --watch",
+    "dev": "nr build --watch",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
     "package": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies"
+    "publish": "vsce publish --no-dependencies",
+    "vscode:prepublish": "nr build",
+    "prepare": "nr update",
+    "update": "vscode-ext-gen --output src/generated/meta.ts",
+    "pack": "vsce package --no-dependencies",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && nr publish"
   },
   "publisher": "BjornLi",
   "devDependencies": {
+    "@antfu/ni": "^0.22.4",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
     "@types/vscode": "^1.92.0",
@@ -174,10 +179,12 @@
     "@typescript-eslint/parser": "^7.11.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.4.0",
+    "bumpp": "^9.5.2",
     "date-fns": "^3.6.0",
     "eslint": "^8.57.0",
     "tsup": "^8.2.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vscode-ext-gen": "^0.4.3"
   },
   "repository": {
     "type": "github",

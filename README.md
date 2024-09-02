@@ -8,20 +8,34 @@ Display the time left in the work day in the status bar.
 
 ![example](./images/example.png)
 
-## Extension Settings
+## Configurations
+
+<!-- configs -->
+
+| Key                           | Description                                     | Type      | Default                                                       |
+| ----------------------------- | ----------------------------------------------- | --------- | ------------------------------------------------------------- |
+| `work-time-left.time`         |                                                 | `string`  | `"18:49:00"`                                                  |
+| `work-time-left.textColor`    | Display text color                              | `string`  | `"#4db051"`                                                   |
+| `work-time-left.locale`       |                                                 | `string`  | `"en-US"`                                                     |
+| `work-time-left.enableRemind` |                                                 | `boolean` | `true`                                                        |
+| `work-time-left.remindTime`   | When to remind you to call it a day, in minutes | `number`  | `5`                                                           |
+| `work-time-left.remindText`   |                                                 | `string`  | `"Great job today! It's time to call it a day and unwind.🌇"` |
+
+<!-- configs -->
 
 also you can click on the status bar to set the time.
 
 ![example-status-bar](./images/example-status-bar.png)
 
-## Command
+## Commands
 
-```json
-{
-  "command": "work-time-left.setTime",
-  "title": "Set Time"
-}
-```
+<!-- commands -->
+
+| Command                  | Title            |
+| ------------------------ | ---------------- |
+| `work-time-left.setTime` | update work time |
+
+<!-- commands -->
 
 ## License
 
