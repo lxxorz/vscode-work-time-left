@@ -4,7 +4,7 @@
   "description": "display work time left",
   "private": true,
   "packageManager": "pnpm@9.6.0",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Bjorn Li <lxxorz@gmail.com>",
   "engines": {
     "vscode": "^1.92.0"
