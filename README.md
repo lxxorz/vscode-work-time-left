@@ -25,8 +25,6 @@ Display the time left in the work day in the status bar.
 
 also you can click on the status bar to set the time.
 
-![example-status-bar](./images/example-status-bar.png)
-
 ## Commands
 
 <!-- commands -->
