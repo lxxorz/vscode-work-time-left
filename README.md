@@ -39,4 +39,4 @@ also you can click on the status bar to set the time.
 
 ## License
 
-[LGPL 3.0](./LICENSE) License © 2024 [BjornLi](https://github.com/lxxorz)
+[AGPL-3.0-only](./LICENSE) License © 2024 [BjornLi](https://github.com/lxxorz)
